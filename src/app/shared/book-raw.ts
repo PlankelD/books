@@ -1,0 +1,16 @@
+//Wegen der Server antwort
+export interface BookRaw {
+  isbn: string;
+  title: string;
+  authors: string[];
+  published: string; // string!!!!!!
+  subtitle?: string;
+  rating: number;
+  thumbnails?: ThumbnailRaw[];
+  description: string;
+}
+
+export interface ThumbnailRaw {
+  url: string;
+  title?:string
+}

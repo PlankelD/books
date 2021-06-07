@@ -1,0 +1,34 @@
+
+<!-- Async Pip
+1) die eingebundene BookListComponent mit ngFor
+2) der Hinweiss, dass keiner Bücher vorhanden sind,
+3) der Hinweis, dass die Liste noch geladen wird
+
+Ich will nicht 3 Subsriptions. Das Hilfselement ng-container
+Das Observable wird aufglöst und mit dem Schlüsselwort as in books gespeichert. Innerhalb des Conainers, sind die Daten
+in der Varible books verfügbar
+-->
+<div class="ui middle aligned selection divided list">
+
+  <ng-container *ngIf="books$ | async as books; else loading">
+    <bm-book-list-item class="item"
+      *ngFor="let b of books"
+      [book]="b"
+      [routerLink]="b.isbn"></bm-book-list-item>
+
+    <p *ngIf="!books.length"
+    i18n="@@BookListComponent:no book"
+    >Es wurden noch keine Bücher eingetragen.</p>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="ui active dimmer">
+      <div class="ui large text loader"
+      i18n="@@BookListComponent:loading data">
+      Daten werden geladen...</div>
+    </div>
+  </ng-template>
+
+</div>
+
+

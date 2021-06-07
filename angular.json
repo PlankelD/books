@@ -4,12 +4,17 @@
   "newProjectRoot": "projects",
   "projects": {
     "books": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
+      "i18n": {
+        "sourceLocale": "de",
+        "locales": {
+          "en": {
+            "translation": "src/messages.en.xtb",
+            "baseHref": ""
+          }
         }
       },
+      "projectType": "application",
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "bm",
@@ -17,6 +22,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/books",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,6 +36,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/semantic-ui-css/semantic.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -59,6 +68,11 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "en": {
+              "localize": [
+                "en"
+              ]
             }
           }
         },
@@ -70,6 +84,9 @@
           "configurations": {
             "production": {
               "browserTarget": "books:build:production"
+            },
+            "en": {
+              "browserTarget": "books:build:en"
             }
           }
         },
@@ -91,6 +108,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/semantic-ui-css/semantic.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -120,6 +138,10 @@
               "devServerTarget": "books:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
