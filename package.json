@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "docker:build": "npm install && ng build --prod && docker build -t books .",
+    "docker:re-deploy": "docker-compose down --remove-orphans && docker-compose up -d"
   },
   "private": true,
   "dependencies": {
